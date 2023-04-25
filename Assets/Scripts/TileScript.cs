@@ -1,3 +1,4 @@
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class TileScript : MonoBehaviour
@@ -7,9 +8,17 @@ public class TileScript : MonoBehaviour
     public bool _wallOnTile;
     public bool _enemyOnTile;
 
+    Vector3 _playerDirection = Vector3.zero;
+    Vector2 position; 
+
     private void Start()
     {
+        position = transform.position;
 
+        if (position.x % 2 == 0 && position.y % 2 == 0 || position.x % 2 != 0 && position.y % 2 != 0)
+            GetComponent<SpriteRenderer>().color = GameManager.Instance.gridColorEven;
+        else
+            GetComponent<SpriteRenderer>().color = GameManager.Instance.gridColorUnEven; 
         
         if(GameManager.Instance.Player.transform.position == this.transform.position)
             _playerOnTile = true;
@@ -30,12 +39,6 @@ public class TileScript : MonoBehaviour
                 _enemyOnTile = true;
             else
                 _enemyOnTile = false;
-        }
-
-        if (this.transform.position.x == GameManager.Instance.tileSize.x - 1 || this.transform.position.x == 0 || this.transform.position.y == GameManager.Instance.tileSize.y - 1|| this.transform.position.y == 0)
-        {
-            _wallOnTile = true; 
-            this.GetComponent<SpriteRenderer>().color = new Color(.28f, .28f, .28f);
         }
     }
     private void Update()

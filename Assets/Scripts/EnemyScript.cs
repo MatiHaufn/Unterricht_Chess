@@ -10,7 +10,7 @@ public class EnemyScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A) && transform.position.x < GameManager.Instance.tileSize.x - GameManager.Instance.stepSize )
+        if (Input.GetKeyDown(KeyCode.A))
         {
             currentStepX = GameManager.Instance.stepSize;
             currentStepY = 0;
@@ -20,12 +20,12 @@ public class EnemyScript : MonoBehaviour
             currentStepX = -GameManager.Instance.stepSize;
             currentStepY = 0;
         }
-        else if (Input.GetKeyDown(KeyCode.S) && transform.position.y < GameManager.Instance.tileSize.y - GameManager.Instance.stepSize)
+        else if (Input.GetKeyDown(KeyCode.S))
         {
             currentStepY = GameManager.Instance.stepSize;
             currentStepX = 0;
         }
-        else if (Input.GetKeyDown(KeyCode.W) && transform.position.y > 0 )
+        else if (Input.GetKeyDown(KeyCode.W))
         {
             currentStepY = -GameManager.Instance.stepSize;
             currentStepX = 0;

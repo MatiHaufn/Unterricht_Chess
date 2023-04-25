@@ -6,7 +6,8 @@ public class StoneMovement : MonoBehaviour
     Vector3 movement;
 
     GameObject Player;
-    Vector2 direction; 
+    Vector2 direction;
+
 
     private void Start()
     {
@@ -20,59 +21,39 @@ public class StoneMovement : MonoBehaviour
 
     private void Update()
     {  
-        if(Player.gameObject.GetComponent<PlayerMovement_2>().pushed)
+        /*
+        if(Player.gameObject.GetComponent<PlayerMovement>().pushed)
         {
             if(this.gameObject.transform.position.x - Player.gameObject.transform.position.x == 1 &&
                 this.gameObject.transform.position.y - Player.gameObject.transform.position.y == 0)
             {
-                Player.gameObject.GetComponent<PlayerMovement_2>().pushed = false;
+                Player.gameObject.GetComponent<PlayerMovement>().pushed = false;
                 direction = new Vector2(1, 0);
             }
             else if (this.gameObject.transform.position.x - Player.gameObject.transform.position.x == -1 &&
                 this.gameObject.transform.position.y - Player.gameObject.transform.position.y == 0)
             {
                 direction = new Vector2(-1, 0);
-                Player.gameObject.GetComponent<PlayerMovement_2>().pushed = false;
+                Player.gameObject.GetComponent<PlayerMovement>().pushed = false;
             }
             else if (this.gameObject.transform.position.y - Player.gameObject.transform.position.y == 1 &&
                 this.gameObject.transform.position.x - Player.gameObject.transform.position.x == 0)
             {
                 direction = new Vector2(0, 1);
-                Player.gameObject.GetComponent<PlayerMovement_2>().pushed = false;
+                Player.gameObject.GetComponent<PlayerMovement>().pushed = false;
             }
             else if (this.gameObject.transform.position.y - Player.gameObject.transform.position.y == -1 &&
                 this.gameObject.transform.position.x - Player.gameObject.transform.position.x == 0)
             {
                 direction = new Vector2(0, -1);
-                Player.gameObject.GetComponent<PlayerMovement_2>().pushed = false;
+                Player.gameObject.GetComponent<PlayerMovement>().pushed = false;
             }
 
             if (this.gameObject.transform.position == Player.gameObject.transform.position)
             {
-                if(direction.y == 1)
-                {
-                    if (transform.position.y < GameManager.Instance.tileSize.y - GameManager.Instance.stepSize)
-                        Moving(direction); 
-                }
-                else if (direction.y == -1)
-                {
-                    if (transform.position.y > 0)
-                        Moving(direction);
-                }
-                else if (direction.x == 1)
-                {
-                    if (transform.position.x < GameManager.Instance.tileSize.x - GameManager.Instance.stepSize)
-                        Moving(direction);
-                }
-                else if (direction.x == -1)
-                {
-                    if (this.transform.position.x > 0)
-                        Moving(direction);
-                }
-                
+                Moving(direction); 
             }
-               // Moving(direction);
-        }
+        }*/
     }
 
 }

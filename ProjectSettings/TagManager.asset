@@ -5,11 +5,15 @@ TagManager:
   serializedVersion: 2
   tags:
   - Tile
+  - enemy
+  - stone
+  - Key
+  - Stone
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Blockade
   - Water
   - UI
   - 

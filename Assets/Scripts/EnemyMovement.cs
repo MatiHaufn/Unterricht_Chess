@@ -12,13 +12,7 @@ public class EnemyMovement : MonoBehaviour
     public int maxUp;
     public int maxRight;
     public int maxLeft;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(down_Key) && transform.position.y >= maxDown)

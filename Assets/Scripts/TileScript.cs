@@ -24,20 +24,6 @@ public class TileScript : MonoBehaviour
         {
             GetComponent<SpriteRenderer>().color = GameManager.Instance.tileColorWall;
             gameObject.layer = LayerMask.NameToLayer("Blockade"); 
-            //GetComponent<SpriteRenderer>().enabled = false;
         }
     }
-    /*
-    // Update is called once per frame
-    void Update()
-    {
-        if (GameManager.Instance.Player.transform.position == this.transform.position)
-        {
-            playerContact = true;
-        }
-        else
-        {
-            playerContact = false;
-        }
-    }*/
 }

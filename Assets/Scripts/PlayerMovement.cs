@@ -62,32 +62,10 @@ public class PlayerMovement : MonoBehaviour
                 direction = Vector3.zero; 
             }
         }
-        else
+        else if(!hit)
         {
             transform.position += direction;
         }
-
-       
-        /*foreach (GameObject tile in GameManager.Instance.Tiles)
-        {
-            foreach (GameObject stone in GameManager.Instance.Stones)
-            {
-                if (tile.transform.position == this.transform.position + direction)
-                {
-                    if ((stone.transform.position == this.transform.position + direction))
-                    {
-                        stone.GetComponent<StoneController>().Move(direction);
-                        break;
-                    }
-                    else if(tile.GetComponent<TileScript>().imAWall == false)
-                    {
-                        transform.position += direction;
-                        break;
-                    }
-                }
-            }  
-        }
-        */
     }
 }
 

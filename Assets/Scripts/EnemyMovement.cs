@@ -25,7 +25,7 @@ public class EnemyMovement : MonoBehaviour
         }
         else if (Input.GetKeyDown(right_Key) && transform.position.x <= maxRight)
         {
-            transform.position += new Vector3(1, 0);
+            transform.position += new Vector3(1, 0); 
         }
         else if (Input.GetKeyDown(left_Key) && transform.position.x >= maxLeft)
         {

@@ -9,9 +9,9 @@ public class GameManager : MonoBehaviour
     public GameObject Player;
     public GameObject Tile;
     public GameObject Stone;
-    public Color tileColorEven;
-    public Color tileColorUneven;
-    public Color tileColorWall;
+
+    GameObject[] Stones; 
+    GameObject[] Enemies; 
 
     private void Awake()
     {
@@ -22,6 +22,25 @@ public class GameManager : MonoBehaviour
         else
         {
             Destroy(this);
+        }
+
+        Stones = GameObject.FindGameObjectsWithTag("Stone");
+        Enemies = GameObject.FindGameObjectsWithTag("enemy");
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Player.GetComponent<PlayerMovement>().ResetPosition();
+            foreach (GameObject stone in Stones)
+            {
+                stone.GetComponent<StoneController>().ResetPosition();
+            }
+            foreach (GameObject enemy in Enemies)
+            {
+                enemy.GetComponent<PlayerMovement>().ResetPosition();
+            }
         }
     }
 }

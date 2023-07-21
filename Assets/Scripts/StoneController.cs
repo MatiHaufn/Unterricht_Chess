@@ -2,6 +2,11 @@ using UnityEngine;
 
 public class StoneController : MonoBehaviour
 {
+    public Vector2 _startPosition; 
+    private void Start()
+    {
+        _startPosition = transform.position;
+    }
     public bool Move(Vector3 direction)
     {
         Vector3 origin = transform.position + direction / 2;
@@ -11,13 +16,37 @@ public class StoneController : MonoBehaviour
         {
             if (hit.collider.gameObject.tag == "Stone")
             {
-                Debug.Log("Stone!!");
-                direction = Vector3.zero;
+                if (hit.collider.gameObject.GetComponent<StoneController>().Move(direction))
+                {
+                    transform.position += direction;
+                }
             }
             else if (hit.collider.gameObject.tag == "Tile" && hit.collider.gameObject.GetComponent<TileScript>().imAWall)
             {
-                Debug.Log("WALL!!");
                 direction = Vector3.zero;
+            }
+            else if (hit.collider.gameObject.tag == "Portal")
+            {
+                GameObject portalManager = hit.collider.gameObject.transform.GetComponentInParent<Portals>().gameObject;
+                GameObject otherPortal = hit.collider.gameObject;
+
+                if (hit.collider.gameObject == portalManager.GetComponent<Portals>()._portal1)
+                    otherPortal = portalManager.GetComponent<Portals>()._portal2;
+                else if (hit.collider.gameObject == portalManager.GetComponent<Portals>()._portal2)
+                    otherPortal = portalManager.GetComponent<Portals>()._portal1;
+
+                if (portalManager.GetComponent<Portals>().WallTest(otherPortal.transform.position, direction) == true)
+                    direction = Vector3.zero;
+                else if (portalManager.GetComponent<Portals>().WallTest(otherPortal.transform.position, direction) == false)
+                {
+                    transform.position = otherPortal.transform.position;
+                    Move(direction);
+                }
+            }
+            else if (hit.collider.gameObject.tag == "MovePad")
+            {
+                transform.position += direction;
+                hit.collider.gameObject.GetComponent<MovePad>().PlatformMove(this.gameObject);
             }
             return false; 
         }
@@ -26,6 +55,10 @@ public class StoneController : MonoBehaviour
             transform.position += direction;
             return true; 
         }
+    }
 
+    public void ResetPosition()
+    {
+        this.transform.position = _startPosition; 
     }
 }

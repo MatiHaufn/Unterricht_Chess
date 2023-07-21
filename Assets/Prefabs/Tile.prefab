@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.7924528, g: 0.7924528, b: 0.7924528, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -98,6 +98,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cfc2d3908d15d548b0feb56ff2871d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tileColorEven: {r: 0.79215693, g: 0.79215693, b: 0.79215693, a: 1}
+  tileColorUneven: {r: 0.49056602, g: 0.49056602, b: 0.49056602, a: 1}
+  tileColorWall: {r: 0.103773594, g: 0.09545213, b: 0.09545213, a: 1}
   playerContact: 0
   imAWall: 0
 --- !u!61 &1005081248091975022

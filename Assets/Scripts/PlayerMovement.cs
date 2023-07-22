@@ -1,3 +1,6 @@
+using System.Collections;
+using Unity.VisualScripting;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -8,17 +11,19 @@ public class PlayerMovement : MonoBehaviour
     public KeyCode right_Key;
     public KeyCode left_Key;
     public Vector3 moves;
-    Rigidbody2D _myRigidbody; 
+    Rigidbody2D _myRigidbody;
+
+    bool _canMove = true; 
 
     void Start()
     {
-        _startPosition = transform.position;
+        _startPosition = transform.position; 
         _myRigidbody = GetComponent<Rigidbody2D>();
         moves = Vector3.zero; 
     }
 
     void Update()
-    {    
+    {   
         if (Input.GetKeyDown(down_Key))
         {
             moves = new Vector3(0, -1);
@@ -87,12 +92,41 @@ public class PlayerMovement : MonoBehaviour
         }
         else if(!hit)
         {
-            transform.position += direction;
+            if (_canMove)
+            {
+                StartCoroutine(MovingLerp(transform.position, direction, 10f)); 
+            }
         }
+        
     }
     public void ResetPosition()
     {
         this.transform.position = _startPosition;
     }
+
+    IEnumerator MovingLerp(Vector2 currentPosition, Vector2 direction, float speed)
+    {
+        Vector3 _endPosition = currentPosition + direction;
+        float elapsedTime = 0;
+        _canMove = false; 
+
+        while (elapsedTime < 1)
+        {
+            transform.position = Vector3.Lerp(currentPosition, _endPosition, elapsedTime * speed);
+            elapsedTime += Time.deltaTime;
+            Debug.Log(elapsedTime * speed);
+
+            if (Vector3.Distance(transform.position, _endPosition) <= 0.8f)
+            {
+                transform.position = _endPosition;
+                break; 
+            }
+            
+            yield return null;
+        }
+        _canMove = true; 
+        yield return null;
+    }
+
 }
 

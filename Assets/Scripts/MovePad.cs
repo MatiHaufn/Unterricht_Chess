@@ -43,7 +43,6 @@ public class MovePad : MonoBehaviour
         }
     }
 
-
     public void PlatformMove(GameObject movingObj)
     {
         movingObj.transform.position += moveDirection;
